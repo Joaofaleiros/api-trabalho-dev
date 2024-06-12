@@ -1,10 +1,10 @@
 import { Produto } from "../../../models/produto";
 import { HttpRequest, HttpResponse } from "../../protocols";
 
-export interface IDeleteProductRepository {
-  deleteProduct: (id: string) => Promise<Produto>;
+export interface IDeleteProdutoRepository {
+  deleteProduto: (id: string) => Promise<Produto>;
 }
 
-export interface IDeleteProductController {
+export interface IDeleteProdutoController {
   handle: (httpRequest: HttpRequest<any>) => Promise<HttpResponse<Produto>>;
 }

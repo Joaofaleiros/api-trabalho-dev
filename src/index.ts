@@ -1,16 +1,16 @@
 import express from "express";
 import { config } from "dotenv";
-import { MongoGetAllProductsRepository } from "./repositories/product/mongo-get-all-products";
-import { MongoGetProductRepository } from "./repositories/product/mongo-get-product";
-import { MongoCreateProductRepository } from "./repositories/product/monto-create-product";
-import { MongoUpdateProductRepository } from "./repositories/product/mongo-update-product";
+import { MongoGetAllProductsRepository } from "./repositories/produto/mongo-get-all-produto";
+import { MongoGetProductRepository } from "./repositories/produto/mongo-get-produto";
+import { MongoCreateProductRepository } from "./repositories/produto/monto-create-produto";
+import { MongoUpdateProductRepository } from "./repositories/produto/mongo-update-produto";
 import { GetAllProductsController } from "./controllers/product/get-all-produto/get-all-products";
 import { GetProductController } from "./controllers/product/get-produto/get.product";
-import { CreateProductController } from "./controllers/product/create-produto/create-product";
+import { CreateProdutoController } from "./controllers/product/create-produto/create-produto";
 import { UpdateProductController } from "./controllers/product/update-produto/update-product";
 import { MongoClient } from "./database/mongo";
-import { MongoDeleteProductRepository } from "./repositories/product/mongo-delete-product";
-import { DeleteProductController } from "./controllers/product/delete-produto/delete-product";
+import { MongoDeleteProdutoRepository } from "./repositories/produto/mongo-delete-produto";
+import { DeleteProdutoController } from "./controllers/product/delete-produto/delete-produto";
 import swaggerUI from "swagger-ui-express";
 import swaggerDocument from "../swagger.json";
 
@@ -58,7 +58,7 @@ const main = async () => {
 
     const mongoCreateProductRepository = new MongoCreateProductRepository();
 
-    const createProductController = new CreateProductController(
+    const createProductController = new CreateProdutoController(
       mongoCreateProductRepository
     );
 
@@ -87,10 +87,10 @@ const main = async () => {
   app.delete("/products/delete/:id", async (req, res) => {
     console.log("DELETE /products/delete/:id");
 
-    const mongoDeleteProductRepository = new MongoDeleteProductRepository();
+    const mongoDeleteProdutoRepository = new MongoDeleteProdutoRepository();
 
-    const deleteProductController = new DeleteProductController(
-      mongoDeleteProductRepository
+    const deleteProductController = new DeleteProdutoController(
+      mongoDeleteProdutoRepository
     );
 
     const response = await deleteProductController.handle({

@@ -1,13 +1,13 @@
 import { Produto } from "../../../models/produto";
 import { HttpResponse, HttpRequest } from "../../protocols";
 
-export interface ICreateProductController {
+export interface ICreateProdutoController {
   handle(
-    httpRequest: HttpRequest<CreateProductParams>
+    httpRequest: HttpRequest<CreateProdutoParams>
   ): Promise<HttpResponse<Produto>>;
 }
 
-export interface CreateProductParams {
+export interface CreateProdutoParams {
   name: string;
   description: string;
   color: string;
@@ -17,6 +17,6 @@ export interface CreateProductParams {
   created_at: Date;
 }
 
-export interface ICreateProductRepository {
-  createProduct(params: CreateProductParams): Promise<Produto>;
+export interface ICreateProdutoRepository {
+  createProduto(params: CreateProdutoParams): Promise<Produto>;
 }

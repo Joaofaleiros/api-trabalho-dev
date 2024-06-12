@@ -1,5 +1,5 @@
 import { IUpdateProductRepository } from "../../controllers/product/update-produto/protocols";
-import { Product } from "../../models/produto";
+import { Produto } from "../../models/produto";
 import { UpdateProductParams } from "../../controllers/product/update-produto/protocols";
 import { MongoClient } from "../../database/mongo";
 import { ObjectId } from "mongodb";
@@ -8,13 +8,13 @@ export class MongoUpdateProductRepository implements IUpdateProductRepository {
   async updateProduct(
     id: string,
     params: UpdateProductParams
-  ): Promise<Product> {
+  ): Promise<Produto> {
     await MongoClient.db
       .collection("products")
       .updateOne({ _id: new ObjectId(id) }, { $set: params });
 
     const product = await MongoClient.db
-      .collection<Omit<Product, "id">>("products")
+      .collection<Omit<Produto, "id">>("products")
       .findOne({ _id: new ObjectId(id) });
 
     if (!product) {

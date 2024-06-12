@@ -1,12 +1,12 @@
 import { IGetProductRepository } from "../../controllers/product/get-produto/protocols";
 import { MongoClient } from "../../database/mongo";
-import { Product } from "../../models/produto";
+import { Produto } from "../../models/produto";
 import { ObjectId } from "mongodb";
 
 export class MongoGetProductRepository implements IGetProductRepository {
-  async getProduct(id: string): Promise<Product> {
+  async getProduct(id: string): Promise<Produto> {
     const product = await MongoClient.db
-      .collection<Omit<Product, "id">>("products")
+      .collection<Omit<Produto, "id">>("products")
       .findOne({ _id: new ObjectId(id) });
 
     if (!product) {

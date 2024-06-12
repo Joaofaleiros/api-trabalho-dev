@@ -1,12 +1,12 @@
 import { ObjectId } from "mongodb";
 import { MongoClient } from "../../database/mongo";
-import { Product } from "../../models/produto";
-import { IDeleteProductRepository } from "../../controllers/product/delete-produto/protocols";
+import { Produto } from "../../models/produto";
+import { IDeleteProdutoRepository } from "../../controllers/product/delete-produto/protocols";
 
-export class MongoDeleteProductRepository implements IDeleteProductRepository {
-  async deleteProduct(id: string): Promise<Product> {
+export class MongoDeleteProdutoRepository implements IDeleteProdutoRepository {
+  async deleteProduto(id: string): Promise<Produto> {
     const product = await MongoClient.db
-      .collection<Omit<Product, "id">>("products")
+      .collection<Omit<Produto, "id">>("products")
       .findOne({ _id: new ObjectId(id) });
 
     if (!product) {

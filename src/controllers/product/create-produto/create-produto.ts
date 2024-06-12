@@ -1,18 +1,18 @@
 import { Produto } from "../../../models/produto";
 import { HttpResponse, HttpRequest } from "../../protocols";
 import {
-  CreateProductParams,
-  ICreateProductController,
-  ICreateProductRepository,
+  CreateProdutoParams,
+  ICreateProdutoController,
+  ICreateProdutoRepository,
 } from "./protocols";
 
-export class CreateProductController implements ICreateProductController {
+export class CreateProdutoController implements ICreateProdutoController {
   constructor(
-    private readonly createProductRepository: ICreateProductRepository
+    private readonly createProdutoRepository: ICreateProdutoRepository
   ) {}
 
   async handle(
-    httpRequest: HttpRequest<CreateProductParams>
+    httpRequest: HttpRequest<CreateProdutoParams>
   ): Promise<HttpResponse<Produto>> {
     if (!httpRequest.body) {
       return {
@@ -58,7 +58,7 @@ export class CreateProductController implements ICreateProductController {
     }
 
     try {
-      const product = await this.createProductRepository.createProduct({
+      const produto = await this.createProdutoRepository.createProduto({
         name,
         description,
         color,
@@ -70,7 +70,7 @@ export class CreateProductController implements ICreateProductController {
 
       return {
         statusCode: 201,
-        body: product,
+        body: produto,
       };
     } catch (error) {
       return {

@@ -1,11 +1,11 @@
-import { IDeleteProductController } from "./protocols";
-import { IDeleteProductRepository } from "./protocols";
+import { IDeleteProdutoController } from "./protocols";
+import { IDeleteProdutoRepository } from "./protocols";
 import { HttpRequest, HttpResponse } from "../../protocols";
 import { Produto } from "../../../models/produto";
 
-export class DeleteProductController implements IDeleteProductController {
+export class DeleteProdutoController implements IDeleteProdutoController {
   constructor(
-    private readonly deleteProductRepository: IDeleteProductRepository
+    private readonly deleteProdutoRepository: IDeleteProdutoRepository
   ) {}
 
   async handle(httpRequest: HttpRequest<any>): Promise<HttpResponse<Produto>> {
@@ -19,7 +19,7 @@ export class DeleteProductController implements IDeleteProductController {
         };
       }
 
-      const product = await this.deleteProductRepository.deleteProduct(id);
+      const product = await this.deleteProdutoRepository.deleteProduto(id);
 
       return {
         statusCode: 200,
