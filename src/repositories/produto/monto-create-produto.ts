@@ -5,7 +5,7 @@ import {
 import { MongoClient } from "../../database/mongo";
 import { Produto } from "../../models/produto";
 
-export class MongoCreateProductRepository implements ICreateProdutoRepository {
+export class MongoCreateProdutoRepository implements ICreateProdutoRepository {
   async createProduto(params: CreateProdutoParams): Promise<Produto> {
     const { insertedId } = await MongoClient.db
       .collection("products")

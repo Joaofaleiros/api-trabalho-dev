@@ -1,13 +1,13 @@
 import express from "express";
 import { config } from "dotenv";
-import { MongoGetAllProductsRepository } from "./repositories/produto/mongo-get-all-produto";
-import { MongoGetProductRepository } from "./repositories/produto/mongo-get-produto";
-import { MongoCreateProductRepository } from "./repositories/produto/monto-create-produto";
-import { MongoUpdateProductRepository } from "./repositories/produto/mongo-update-produto";
-import { GetAllProductsController } from "./controllers/product/get-all-produto/get-all-products";
-import { GetProductController } from "./controllers/product/get-produto/get.product";
+import { MongoGetAllProdutoRepository } from "./repositories/produto/mongo-get-all-produto";
+import { MongoGetProdutoRepository } from "./repositories/produto/mongo-get-produto";
+import { MongoCreateProdutoRepository } from "./repositories/produto/monto-create-produto";
+import { MongoUpdateProdutoRepository } from "./repositories/produto/mongo-update-produto";
+import { GetAllProdutoController } from "./controllers/product/get-all-produto/get-all-products";
+import { GetProdutoController } from "./controllers/product/get-produto/get.product";
 import { CreateProdutoController } from "./controllers/product/create-produto/create-produto";
-import { UpdateProductController } from "./controllers/product/update-produto/update-product";
+import { UpdateProdutoController } from "./controllers/product/update-produto/update-produto";
 import { MongoClient } from "./database/mongo";
 import { MongoDeleteProdutoRepository } from "./repositories/produto/mongo-delete-produto";
 import { DeleteProdutoController } from "./controllers/product/delete-produto/delete-produto";
@@ -25,54 +25,54 @@ const main = async () => {
 
   app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
-  app.get("/products", async (req, res) => {
+  app.get("/produtos", async (req, res) => {
     console.log("GET /products");
 
-    const mongoGetAllProductsRepository = new MongoGetAllProductsRepository();
+    const mongoGetAllProdutoRepository = new MongoGetAllProdutoRepository();
 
-    const getAllProductsController = new GetAllProductsController(
-      mongoGetAllProductsRepository
+    const getAllProdutoController = new GetAllProdutoController(
+      mongoGetAllProdutoRepository
     );
 
-    const response = await getAllProductsController.handle();
+    const response = await getAllProdutoController.handle();
 
     res.status(response.statusCode).json(response.body);
   });
 
-  app.get("/products/:id", async (req, res) => {
+  app.get("/produtos/:id", async (req, res) => {
     console.log("GET /products/:id");
 
-    const mongoGetProductRepository = new MongoGetProductRepository();
+    const mongoGetProdutoRepository = new MongoGetProdutoRepository();
 
-    const getProductController = new GetProductController(
-      mongoGetProductRepository
+    const getProdutoController = new GetProdutoController(
+      mongoGetProdutoRepository
     );
 
-    const response = await getProductController.handle({ params: req.params });
+    const response = await getProdutoController.handle({ params: req.params });
 
     res.status(response.statusCode).json(response.body);
   });
 
-  app.post("/products/create", async (req, res) => {
+  app.post("/produtos/cadastrar", async (req, res) => {
     console.log("POST /products/create");
 
-    const mongoCreateProductRepository = new MongoCreateProductRepository();
+    const mongoCreateProdutoRepository = new MongoCreateProdutoRepository();
 
-    const createProductController = new CreateProdutoController(
-      mongoCreateProductRepository
+    const createProdutoController = new CreateProdutoController(
+      mongoCreateProdutoRepository
     );
 
-    const response = await createProductController.handle({ body: req.body });
+    const response = await createProdutoController.handle({ body: req.body });
 
     res.status(response.statusCode).json(response.body);
   });
 
-  app.patch("/products/update/:id", async (req, res) => {
+  app.patch("/produtos/atualizar/:id", async (req, res) => {
     console.log("PATCH /products/update/:id");
 
-    const mongoUpdateProductRepository = new MongoUpdateProductRepository();
+    const mongoUpdateProductRepository = new MongoUpdateProdutoRepository();
 
-    const updateProductController = new UpdateProductController(
+    const updateProductController = new UpdateProdutoController(
       mongoUpdateProductRepository
     );
 
@@ -84,7 +84,7 @@ const main = async () => {
     res.status(response.statusCode).json(response.body);
   });
 
-  app.delete("/products/delete/:id", async (req, res) => {
+  app.delete("/produtos/deletar/:id", async (req, res) => {
     console.log("DELETE /products/delete/:id");
 
     const mongoDeleteProdutoRepository = new MongoDeleteProdutoRepository();

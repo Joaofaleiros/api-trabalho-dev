@@ -1,10 +1,8 @@
-import { IGetAllProductsRepository } from "../../controllers/product/get-all-produto/protocols";
+import { IGetAllProdutoRepository } from "../../controllers/product/get-all-produto/protocols";
 import { MongoClient } from "../../database/mongo";
 import { Produto } from "../../models/produto";
 
-export class MongoGetAllProductsRepository
-  implements IGetAllProductsRepository
-{
+export class MongoGetAllProdutoRepository implements IGetAllProdutoRepository {
   async getProducts(): Promise<Produto[]> {
     const products = await MongoClient.db
       .collection<Omit<Produto, "id">>("products")

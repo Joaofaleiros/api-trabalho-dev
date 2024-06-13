@@ -1,16 +1,16 @@
-import { IGetProductController } from "./protocols";
-import { IGetProductRepository } from "./protocols";
+import { IGetProdutoController } from "./protocols";
+import { IGetProdutoRepository } from "./protocols";
 import { HttpRequest, HttpResponse } from "../../protocols";
 import { Produto } from "../../../models/produto";
 
-export class GetProductController implements IGetProductController {
-  constructor(private readonly getProductRepository: IGetProductRepository) {}
+export class GetProdutoController implements IGetProdutoController {
+  constructor(private readonly getProdutoRepository: IGetProdutoRepository) {}
 
   async handle(httpRequest: HttpRequest<any>): Promise<HttpResponse<Produto>> {
     try {
       const { id } = httpRequest.params;
 
-      const product = await this.getProductRepository.getProduct(id);
+      const product = await this.getProdutoRepository.getProduct(id);
 
       return {
         statusCode: 200,

@@ -1,12 +1,12 @@
 import { HttpResponse } from "../../protocols";
-import { IUpdateProductController } from "./protocols";
+import { IUpdateProdutoController } from "./protocols";
 import { HttpRequest } from "../../protocols";
 import { Produto } from "../../../models/produto";
-import { IUpdateProductRepository } from "./protocols";
+import { IUpdateProdutoRepository } from "./protocols";
 
-export class UpdateProductController implements IUpdateProductController {
+export class UpdateProdutoController implements IUpdateProdutoController {
   constructor(
-    private readonly updateProductRepository: IUpdateProductRepository
+    private readonly updateProdutoRepository: IUpdateProdutoRepository
   ) {}
 
   async handle(httpRequest: HttpRequest<any>): Promise<HttpResponse<Produto>> {
@@ -44,7 +44,7 @@ export class UpdateProductController implements IUpdateProductController {
         };
       }
 
-      const product = await this.updateProductRepository.updateProduct(id, {
+      const product = await this.updateProdutoRepository.updateProduct(id, {
         name,
         description,
         color,

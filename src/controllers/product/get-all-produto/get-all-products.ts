@@ -1,22 +1,27 @@
-import { IGetAllProductsController, IGetAllProductsRepository } from "./protocols";
+import {
+  IGetAllProdutoController,
+  IGetAllProdutoRepository,
+} from "./protocols";
 
-export class GetAllProductsController implements IGetAllProductsController {
-  constructor(private readonly getAllProductsRepository: IGetAllProductsRepository) {
-    this.getAllProductsRepository = getAllProductsRepository;
+export class GetAllProdutoController implements IGetAllProdutoController {
+  constructor(
+    private readonly getAllProdutoRepository: IGetAllProdutoRepository
+  ) {
+    this.getAllProdutoRepository = getAllProdutoRepository;
   }
 
   async handle() {
     try {
-      const products = await this.getAllProductsRepository.getProducts();
+      const products = await this.getAllProdutoRepository.getProducts();
 
       return {
-        statusCode: 200, 
+        statusCode: 200,
         body: products,
       };
     } catch (error) {
       return {
         statusCode: 500,
-        body: 'Internal server error',
+        body: "Internal server error",
       };
     }
   }

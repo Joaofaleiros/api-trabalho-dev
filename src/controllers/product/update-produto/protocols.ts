@@ -1,7 +1,7 @@
 import { Produto } from "../../../models/produto";
 import { HttpResponse, HttpRequest } from "../../protocols";
 
-export interface UpdateProductParams {
+export interface UpdateProdutoParams {
   name?: string;
   description?: string;
   color?: string;
@@ -10,10 +10,10 @@ export interface UpdateProductParams {
   price?: number;
 }
 
-export interface IUpdateProductController {
+export interface IUpdateProdutoController {
   handle(httpRequest: HttpRequest<any>): Promise<HttpResponse<Produto>>;
 }
 
-export interface IUpdateProductRepository {
-  updateProduct(id: string, params: UpdateProductParams): Promise<Produto>;
+export interface IUpdateProdutoRepository {
+  updateProduct(id: string, params: UpdateProdutoParams): Promise<Produto>;
 }

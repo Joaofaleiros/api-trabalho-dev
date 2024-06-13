@@ -1,9 +1,9 @@
-import { IGetProductRepository } from "../../controllers/product/get-produto/protocols";
+import { IGetProdutoRepository } from "../../controllers/product/get-produto/protocols";
 import { MongoClient } from "../../database/mongo";
 import { Produto } from "../../models/produto";
 import { ObjectId } from "mongodb";
 
-export class MongoGetProductRepository implements IGetProductRepository {
+export class MongoGetProdutoRepository implements IGetProdutoRepository {
   async getProduct(id: string): Promise<Produto> {
     const product = await MongoClient.db
       .collection<Omit<Produto, "id">>("products")

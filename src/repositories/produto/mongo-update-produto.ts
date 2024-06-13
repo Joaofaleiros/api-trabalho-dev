@@ -1,13 +1,13 @@
-import { IUpdateProductRepository } from "../../controllers/product/update-produto/protocols";
+import { IUpdateProdutoRepository } from "../../controllers/product/update-produto/protocols";
 import { Produto } from "../../models/produto";
-import { UpdateProductParams } from "../../controllers/product/update-produto/protocols";
+import { UpdateProdutoParams } from "../../controllers/product/update-produto/protocols";
 import { MongoClient } from "../../database/mongo";
 import { ObjectId } from "mongodb";
 
-export class MongoUpdateProductRepository implements IUpdateProductRepository {
+export class MongoUpdateProdutoRepository implements IUpdateProdutoRepository {
   async updateProduct(
     id: string,
-    params: UpdateProductParams
+    params: UpdateProdutoParams
   ): Promise<Produto> {
     await MongoClient.db
       .collection("products")
